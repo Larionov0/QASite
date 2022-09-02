@@ -32,3 +32,7 @@ def restaurant_view(request):
         html += f'<tr><td>{dish["name"]}</td><td>{dish["price"]}</td></tr>'
     html += '</table>'
     return HttpResponse(html)
+
+
+def restaurant_view2(request):
+    return render(request, 'restaurant.html', context={'amount': 4, 'store': store})
