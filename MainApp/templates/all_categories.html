@@ -5,6 +5,7 @@
     <title>Countries</title>
 </head>
 <body>
+  <h2>User {{ username }}</h2> <a href="/auth/logout/"><button>Log Out</button></a>
   <table>
     <tr>
       <td>Name</td><td>Description</td><td></td>
@@ -17,7 +18,7 @@
   </table>
 
   <h2>Create category</h2>
-  <form action="/main/create_category">
+  <form action="/main/create_category/">
     <input type="text" placeholder="Name" name="name">
     <input type="text" placeholder="Description" name="description">
     <input type="submit" value="Create">
