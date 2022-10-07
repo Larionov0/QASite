@@ -26,4 +26,14 @@ class Product(models.Model):
     price = models.IntegerField(default=0)
     availability = models.BooleanField(default=True)
     producer = models.ForeignKey(Producer, on_delete=models.PROTECT)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True, related_name='products')  # category.products.all()
+
+
+class Basket(models.Model):
+    pass
+
+
+class ProductBasket(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)  # product.productbusket_set.all()
+    basket = models.ForeignKey(Basket, on_delete=models.CASCADE, related_name='product_baskets')
+    amount = models.IntegerField(default=1)

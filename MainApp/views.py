@@ -68,3 +68,7 @@ def create_category(request):
 def delete_category(request, cat_id):
     Category.objects.get(id=cat_id).delete()
     return redirect('/main/all_categories')
+
+
+def store(request):
+    return render(request, 'store.html', context={'categories': Category.objects.all()})
