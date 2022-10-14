@@ -3,52 +3,6 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 
 
-store = [
-    {
-        'name': 'pizza Margarita',
-        'price': 20
-    },
-    {
-        'name': 'Lazanga',
-        'price': 35
-    },
-    {
-        'name': 'Bolongeze',
-        'price': 30
-    },
-    {
-        'name': 'pizza Pizza',
-        'price': 25
-    },
-]
-
-
-def first_view(request):
-
-    return HttpResponse('<p>My first view</p>')
-
-
-def restaurant_view(request):
-    html = '<table>' \
-           '<tr><th>Name</th><th>Price</th></tr>'
-    for dish in store:
-        html += f'<tr><td>{dish["name"]}</td><td>{dish["price"]}</td></tr>'
-    html += '</table>'
-    return HttpResponse(html)
-
-
-def restaurant_view2(request):
-    return render(request, 'restaurant.html', context={'amount': 4, 'store': store})
-
-
-# def all_categories(request):
-#     if request.user.is_authenticated:
-#         return render(request, 'all_categories.html', context={'categories': Category.objects.all()})
-#     else:
-#         # raise Http404('you need to be authenticated to see this page')
-#         return redirect('/auth/sign_in/')
-
-
 @login_required
 def all_categories(request):
     return render(request, 'all_categories.html', context={'categories': Category.objects.all(),
@@ -71,4 +25,12 @@ def delete_category(request, cat_id):
 
 
 def store(request):
-    return render(request, 'store.html', context={'categories': Category.objects.all()})
+    cat_id = request.GET.get('category')
+    try:
+        category = Category.objects.get(id=cat_id)
+    except Category.DoesNotExist as exc:
+        category = Category.objects.get(id=8)
+
+    products = Product.objects.filter(category=category)
+    return render(request, 'store.html', context={'categories': Category.objects.all(), 'category': category,
+                                                  'products': products})

@@ -14,19 +14,28 @@ class Producer(models.Model):
     description = models.TextField(max_length=300)
     country = models.ForeignKey(Country, on_delete=models.PROTECT)
 
+    def __str__(self):
+        return f"{self.name} ({self.country})"
+
 
 class Category(models.Model):
     name = models.CharField(max_length=30, unique=True)
     description = models.TextField(max_length=300)
 
+    def __str__(self):
+        return f"{self.name}"
+
 
 class Product(models.Model):
     name = models.CharField(max_length=30, unique=True)
-    description = models.TextField(max_length=300)
+    description = models.TextField(max_length=300, blank=True)
     price = models.IntegerField(default=0)
     availability = models.BooleanField(default=True)
     producer = models.ForeignKey(Producer, on_delete=models.PROTECT)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True, related_name='products')  # category.products.all()
+
+    def __str__(self):
+        return f"{self.name} ({self.price})"
 
 
 class Basket(models.Model):

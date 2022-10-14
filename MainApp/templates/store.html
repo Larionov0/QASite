@@ -14,13 +14,24 @@
         <div id="left_panel">
             <div id="categories">
                 {% for cat in categories %}
-                    <a class="category" href="#">
+                    <a class="category" href="/main/store/?category={{cat.id}}">
                         {{ cat.name }}
                     </a>
                 {% endfor %}
             </div>
         </div>
-        <div id="main_panel"></div>
+        <div id="main_panel">
+            {% for prod in products %}
+                <div class="product">
+                    <div class="prod_header">{{ prod.name }}</div>
+                    <div class="image_place">
+                        <img src="https://content.rozetka.com.ua/goods/images/big/247833801.jpg" alt="">
+                    </div>
+                    <div class="prod_description">{{ prod.description }}</div>
+                    <div class="prod_price"> {{ prod.price }} грн </div>
+                </div>
+            {% endfor %}
+        </div> 
     </div>
 </body>
 </html>

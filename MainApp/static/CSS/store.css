@@ -1,11 +1,13 @@
 body {
-    height: 100vh;
+    margin: 0px;
+    padding: 0px;
     width: 100vw;
+    min-height: 100vh;
 }
 
 #upper_panel {
-    background-color: rgb(155, 255, 255);
-    height: 5%;
+    background-color: rgba(155, 255, 255, 0.466);
+    height: 5vh;
     width: 100%;
 }
 
@@ -14,7 +16,7 @@ body {
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 95%;
+    min-height: 95vh;
 }
 
 #left_panel {
@@ -24,9 +26,12 @@ body {
 }
 
 #main_panel {
-    background-color: rgb(197, 238, 144);
-    height: 100%;
+    background-color: rgba(144, 238, 183, 0.445);
+    min-height: 95vh;
     width: 55%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 #categories {
@@ -58,4 +63,45 @@ body {
 .category:hover {
     width: 85%;
     background-color: rgba(192, 217, 238, 0.678);
+}
+
+
+.product {
+    width: 15%;
+    height: 22vh;
+    background-color: rgba(0, 0, 0, 0.082);
+    margin: 20px;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.prod_header {
+    height: 10%;
+    background-color: rgba(0, 0, 0, 0.027);
+}
+
+.image_place {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image_place img {
+    height: 100%;
+}
+
+.prod_description {
+    background-color: rgba(0, 0, 0, 0.062);
+    width: 100%;
+    height: 19%;
+}
+
+.prod_price {
+    width: 100%;
+    height: 6%;
 }
